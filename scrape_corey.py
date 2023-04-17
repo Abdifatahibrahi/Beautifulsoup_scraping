@@ -1,4 +1,10 @@
+import csv
 from requests_html import HTMLSession
+
+
+csv_file = open('cms_scrape.csv', 'w')
+csv_writer = csv.writer(csv_file)
+csv_writer.writerow(['headline', 'summary', 'video'])
 
 url = 'https://coreyms.com/'
 session = HTMLSession()
@@ -20,4 +26,9 @@ for article in articles:
     print(summary)
     print(youtube_link)
     print()
+
+    csv_writer.writerow([headline, summary, youtube_link])
+
+csv_file.close()
+
 
